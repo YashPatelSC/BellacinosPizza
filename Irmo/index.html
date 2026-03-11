@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bellacino's Irmo, SC</title>
+  <style>
+    :root{
+      --red:#c5121b;
+      --black:#0d0d0d;
+      --white:#ffffff;
+      --light:#efefef;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      background:
+        linear-gradient(155deg, var(--red) 0 8%, transparent 8% 12%, var(--black) 12% 20%, transparent 20% 24%, var(--red) 24% 32%, transparent 32% 36%, var(--black) 36% 44%, transparent 44% 48%, var(--red) 48% 56%, transparent 56% 60%, var(--black) 60% 68%, transparent 68% 72%, var(--red) 72% 80%, transparent 80% 84%, var(--black) 84% 92%, transparent 92% 100%);
+      background-attachment: fixed;
+      color: var(--black);
+      letter-spacing:.02em;
+    }
+    .shell{
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+    .topbar{
+      background: var(--light);
+      border: 6px solid var(--black);
+      box-shadow: 0 12px 30px rgba(0,0,0,.2);
+      display:grid;
+      grid-template-columns: 1.3fr .9fr;
+      gap: 18px;
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+    .brand{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.brand-logo{
+  max-width:560px;
+  width:100%;
+  height:auto;
+  display:block;
+  margin-bottom:12px;
+}
+
+.brand-location{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:1rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform: uppercase;
+}
+    .welcome{
+      background: var(--red);
+      color: var(--white);
+      border: 6px solid var(--black);
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      text-align:center;
+    }
+    .welcome .big{
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height:.95;
+      margin:0;
+      text-transform: uppercase;
+      text-shadow: 3px 3px 0 #000;
+    }
+    .welcome .sub{
+      margin-top:10px;
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      letter-spacing:.08em;
+      text-transform: uppercase;
+    }
+    .welcome a{
+      display:inline-block;
+      margin-top:16px;
+      background:#fff;
+      color:#000;
+      text-decoration:none;
+      padding:12px 16px;
+      border:4px solid #000;
+      font-size:1rem;
+    }
+    .grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 22px;
+  align-items:start;
+}
+    .panel{
+  background: var(--light);
+  border: 6px solid var(--black);
+  padding: 20px 20px 16px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.2);
+  align-self:start;
+}
+    .section{
+      margin-bottom: 22px;
+    }
+    .section:last-child{margin-bottom:0}
+    .section-title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin: 0 0 8px;
+      color: var(--red);
+      font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+      line-height:.95;
+      text-transform: uppercase;
+      letter-spacing:.06em;
+    }
+    .section-title::after{
+      content:"";
+      height:4px;
+      background:#222;
+      flex:1;
+      min-width:20px;
+    }
+    .subhead{
+      display:inline-block;
+      background:#000;
+      color:#fff;
+      padding:4px 8px;
+      margin:6px 0 8px;
+      font-size:.95rem;
+      text-transform: uppercase;
+      letter-spacing:.08em;
+    }
+    .desc{
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:.82rem;
+      line-height:1.35;
+      margin: 0 0 10px;
+      letter-spacing:0;
+    }
+    .menu-list{
+      display:grid;
+      gap: 5px;
+    }
+    .item{
+      display:grid;
+      grid-template-columns: auto 1fr auto;
+      gap:10px;
+      align-items:end;
+      font-size: 1rem;
+      line-height:1.05;
+      text-transform: uppercase;
+    }
+    .item .name{
+      background:#fff;
+      padding-right:4px;
+    }
+    .item .dots{
+      border-bottom: 2px solid #7b7b7b;
+      transform: translateY(-3px);
+    }
+    .item .price{
+      background:#fff;
+      padding-left:4px;
+      white-space:nowrap;
+    }
+    .item small{
+      display:block;
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform:none;
+      letter-spacing:0;
+      font-size:.72rem;
+      color:#333;
+      margin-top:2px;
+      line-height:1.2;
+    }
+    .muted{
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:.78rem;
+      line-height:1.25;
+      letter-spacing:0;
+      margin-top:8px;
+    }
+    .black-box{
+      background:#000;
+      color:#fff;
+      padding:12px;
+      border:4px solid #333;
+      margin-top:10px;
+    }
+    .black-box .item .name,
+    .black-box .item .price{
+      background:#000;
+      color:#fff;
+    }
+    .toppings{
+      background:#000;
+      color:#fff;
+      padding:14px;
+      border:4px solid #222;
+      margin-bottom:16px;
+    }
+    .toppings h4{
+      margin:0 0 8px;
+      color:#ff4d4d;
+      font-size:1.4rem;
+      text-transform: uppercase;
+    }
+    .columns{
+      columns: 3 140px;
+      gap:20px;
+      font-size:1.05rem;
+      text-transform: uppercase;
+    }
+    .columns div{break-inside:avoid; margin-bottom:4px;}
+    .hours, .locations{
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform:none;
+      letter-spacing:0;
+      font-size:1rem;
+      line-height:1.5;
+    }
+    .locations strong{
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      text-transform: uppercase;
+      letter-spacing:.05em;
+      font-size:1.3rem;
+    }
+    .cta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
+    }
+    .btn{
+      text-decoration:none;
+      background:var(--red);
+      color:#fff;
+      border:4px solid #000;
+      padding:12px 14px;
+      font-size:.95rem;
+      text-transform: uppercase;
+    }
+    footer{
+      margin-top:18px;
+      background:var(--light);
+      border:6px solid var(--black);
+      padding:14px 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:.85rem;
+      text-align:center;
+    }
+  @media (max-width: 900px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .topbar{
+    grid-template-columns:1fr;
+  }
+}
+    @media (max-width: 640px){
+      .shell{padding:10px}
+      .panel, .topbar, footer{border-width:4px}
+      .item{font-size:.92rem}
+      .columns{columns:2 120px}
+      .welcome a, .btn{display:block; width:100%; text-align:center}
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+     <div class="brand">
+  <img src="bella_logo.png" alt="Bellacino's Pizza & Grinders" class="brand-logo">
+
+</div>
+      <div class="welcome">
+        <p class="big">Welcome</p>
+        <div class="sub">Dine In • Carry Out • Order Online</div>
+        <a href="tel:18034074884">Call (803) 407-4884</a>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="panel">
+        <div class="section">
+          <h2 class="section-title">Favorites</h2>
+          <div class="menu-list">
+            <div class="item"><span class="name">Baked Fries</span><span class="dots"></span><span class="price">$2.79</span></div>
+            <div class="item"><span class="name">Loaded Fries</span><span class="dots"></span><span class="price">$8.29</span></div>
+            <div class="item"><span class="name">Nacho Supreme</span><span class="dots"></span><span class="price">$8.29</span></div>
+            <div class="item"><span class="name">Garlic Cheese Bread</span><span class="dots"></span><span class="price">$5.49</span></div>
+            <div class="item"><span class="name">Parmesan Sticks</span><span class="dots"></span><span class="price">$4.79</span></div>
+            <div class="item"><span class="name">Cheesy Breadsticks</span><span class="dots"></span><span class="price">$7.49</span></div>
+            <div class="item"><span class="name">Bone-In Wings (6)</span><span class="dots"></span><span class="price">$8.99</span></div>
+            <div class="item"><span class="name">Bone-In Wings (12)</span><span class="dots"></span><span class="price">$14.99</span></div>
+            <div class="item"><span class="name">Bone-In Wings (20)</span><span class="dots"></span><span class="price">$21.99</span></div>
+            <div class="item"><span class="name">Breaded Onion Rings</span><span class="dots"></span><span class="price">$4.49</span></div>
+            <div class="item"><span class="name">Chips</span><span class="dots"></span><span class="price">$1.29</span></div>
+            <div class="item"><span class="name">Side of Dipping Sauce</span><span class="dots"></span><span class="price">$0.89</span></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Salads</h2>
+          <div class="subhead">Dressings</div>
+          <p class="desc">Ranch, Thousand Island, Bleu Cheese, Honey Mustard, Italian, Greek, French, Fat Free Italian, Fat Free Raspberry Vinaigrette</p>
+          <div class="menu-list">
+            <div class="item"><span class="name">Sandra's Signature Salad</span><span class="dots"></span><span class="price">$11.79</span></div>
+            <div class="item"><span class="name">Chef Salad</span><span class="dots"></span><span class="price">$12.19</span></div>
+            <div class="item"><span class="name">Grilled Chicken Salad</span><span class="dots"></span><span class="price">$12.19</span></div>
+            <div class="item"><span class="name">Steak Salad</span><span class="dots"></span><span class="price">$12.19</span></div>
+            <div class="item"><span class="name">Seafood Salad</span><span class="dots"></span><span class="price">$12.19</span></div>
+            <div class="item"><span class="name">Greek Salad</span><span class="dots"></span><span class="price">$12.19</span></div>
+            <div class="item"><span class="name">Taco Salad</span><span class="dots"></span><span class="price">$11.59</span></div>
+            <div class="item"><span class="name">Veggie Salad</span><span class="dots"></span><span class="price">$11.49</span></div>
+            <div class="item"><span class="name">Side Salad</span><span class="dots"></span><span class="price">$6.29</span></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Bellacino's Light</h2>
+          <div class="menu-list">
+            <div class="item"><span class="name">Veggie Light</span><span class="dots"></span><span class="price">$8.99 / $16.99</span></div>
+            <div class="item"><span class="name">Chicken Light</span><span class="dots"></span><span class="price">$10.39 / $19.79</span></div>
+            <div class="item"><span class="name">Ham &amp; Cheese Light</span><span class="dots"></span><span class="price">$9.39 / $17.79</span></div>
+            <div class="item"><span class="name">Turkey Light</span><span class="dots"></span><span class="price">$9.39 / $17.79</span></div>
+            <div class="item"><span class="name">Roast Beef Light</span><span class="dots"></span><span class="price">$10.39 / $19.79</span></div>
+          </div>
+          <p class="muted">Half and whole pricing shown together, matching the printed menu style.</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section">
+          <h2 class="section-title">Grinders</h2>
+          <p class="desc">Our bread is made from scratch using our own original recipe, baked fresh daily.</p>
+          <div class="menu-list">
+            <div class="item"><span class="name">Italian Grinder</span><span class="dots"></span><span class="price">$9.19 / $17.49</span></div>
+            <div class="item"><span class="name">Bellacino's Zesty Deli</span><span class="dots"></span><span class="price">$9.19 / $17.49</span></div>
+            <div class="item"><span class="name">Pizza Grinder</span><span class="dots"></span><span class="price">$8.99 / $16.99</span></div>
+            <div class="item"><span class="name">Bellacino's Club</span><span class="dots"></span><span class="price">$9.19 / $17.49</span></div>
+            <div class="item"><span class="name">Bomber</span><span class="dots"></span><span class="price">$10.29 / $19.59</span></div>
+            <div class="item"><span class="name">Steak</span><span class="dots"></span><span class="price">$10.29 / $19.59</span></div>
+            <div class="item"><span class="name">Chicago Steak</span><span class="dots"></span><span class="price">$10.29 / $19.59</span></div>
+            <div class="item"><span class="name">Chicken</span><span class="dots"></span><span class="price">$10.29 / $19.59</span></div>
+            <div class="item"><span class="name">Chicken Bacon Ranch</span><span class="dots"></span><span class="price">$10.29 / $19.59</span></div>
+            <div class="item"><span class="name">Bellacino's Bayou</span><span class="dots"></span><span class="price">$10.29 / $19.59</span></div>
+            <div class="item"><span class="name">Triple Decker</span><span class="dots"></span><span class="price">$9.89 / $18.79</span></div>
+            <div class="item"><span class="name">Krab &amp; Seafood</span><span class="dots"></span><span class="price">$9.19 / $17.49</span></div>
+            <div class="item"><span class="name">Ham &amp; Cheese</span><span class="dots"></span><span class="price">$9.19 / $17.49</span></div>
+            <div class="item"><span class="name">Reuben</span><span class="dots"></span><span class="price">$9.19 / $17.49</span></div>
+            <div class="item"><span class="name">Ham &amp; Turkey</span><span class="dots"></span><span class="price">$9.19 / $17.49</span></div>
+            <div class="item"><span class="name">Ham, Cheese &amp; Salami</span><span class="dots"></span><span class="price">$9.19 / $17.49</span></div>
+            <div class="item"><span class="name">Turkey Grinder</span><span class="dots"></span><span class="price">$9.19 / $17.49</span></div>
+            <div class="item"><span class="name">Roast Beef</span><span class="dots"></span><span class="price">$9.19 / $17.49</span></div>
+            <div class="item"><span class="name">Veggie</span><span class="dots"></span><span class="price">$8.79 / $17.49</span></div>
+            <div class="item"><span class="name">B.L.T.</span><span class="dots"></span><span class="price">$9.19 / $17.49</span></div>
+            <div class="item"><span class="name">Stromboli Grinder</span><span class="dots"></span><span class="price">$9.19 / $17.49</span></div>
+            <div class="item"><span class="name">Tuna</span><span class="dots"></span><span class="price">$9.19 / $17.49</span></div>
+            <div class="item"><span class="name">Meatball</span><span class="dots"></span><span class="price">$9.19 / $17.49</span></div>
+            <div class="item"><span class="name">Taco</span><span class="dots"></span><span class="price">$9.19 / $17.49</span></div>
+            <div class="item"><span class="name">French Dip</span><span class="dots"></span><span class="price">$9.19 / $16.49</span></div>
+            <div class="item"><span class="name">Chicken Parmesan</span><span class="dots"></span><span class="price">$10.29 / $17.69</span></div>
+          </div>
+
+          <div class="black-box">
+            <div class="subhead" style="background:#fff;color:#000;">Make Any Grinder A Meal</div>
+            <div class="menu-list">
+              <div class="item"><span class="name">Add Regular Pepsi</span><span class="dots"></span><span class="price">$3.79 / $5.29 / $6.39 / $8.59</span></div>
+              <div class="item"><span class="name">Add Large Pepsi</span><span class="dots"></span><span class="price">$3.99 / $5.49 / $6.49 / $8.69</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section">
+          <h2 class="section-title">Pizza</h2>
+          <div class="toppings">
+            <h4>Toppings</h4>
+            <div class="columns">
+              <div>Steak</div><div>Chicken</div><div>Pepperoni</div><div>Sausage</div><div>Ham</div><div>Bacon</div><div>Meatballs</div><div>Salami</div><div>Anchovies</div>
+              <div>Onions</div><div>Red Onions</div><div>Green Peppers</div><div>Mushrooms</div><div>Ground Beef</div><div>Black Olives</div><div>Green Olives</div><div>Jalapeños</div><div>Capers</div>
+              <div>Banana Pepper Rings</div><div>Pineapple</div><div>Fresh Tomatoes</div><div>Sundried Tomatoes</div><div>Feta</div><div>Spinach</div><div>Artichoke</div><div>Extra Cheese</div>
+            </div>
+          </div>
+          <div class="menu-list">
+            <div class="item"><span class="name">Plain Cheese</span><span class="dots"></span><span class="price">$6.39 / $13.29 / $16.99</span></div>
+            <div class="item"><span class="name">Additional Half Toppings</span><span class="dots"></span><span class="price">$1.09 / $1.29 / $1.39</span></div>
+            <div class="item"><span class="name">Additional Full Toppings</span><span class="dots"></span><span class="price">$1.29 / $1.89 / $2.39</span></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Specialty Pizza</h2>
+          <div class="menu-list">
+            <div class="item"><span class="name">Bellacino's Pride</span><span class="dots"></span><span class="price">$10.09 / $18.89 / $25.99</span></div>
+            <div class="item"><span class="name">Chicken Alfredo</span><span class="dots"></span><span class="price">$10.09 / $18.89 / $25.99</span></div>
+            <div class="item"><span class="name">Bellacino's Super</span><span class="dots"></span><span class="price">$9.39 / $17.29 / $22.69</span></div>
+            <div class="item"><span class="name">Veggie</span><span class="dots"></span><span class="price">$9.39 / $17.29 / $22.69</span></div>
+            <div class="item"><span class="name">Taco</span><span class="dots"></span><span class="price">$10.09 / $18.89 / $25.99</span></div>
+            <div class="item"><span class="name">Bellacino's Meat Eater</span><span class="dots"></span><span class="price">$10.09 / $18.89 / $25.99</span></div>
+            <div class="item"><span class="name">Chicago Steak</span><span class="dots"></span><span class="price">$10.09 / $18.89 / $25.99</span></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Desserts</h2>
+          <div class="menu-list">
+            <div class="item"><span class="name">Cookies</span><span class="dots"></span><span class="price">$0.89 or 3/$2.09</span></div>
+            <div class="item"><span class="name">Cinnamon Sticks</span><span class="dots"></span><span class="price">$5.39</span></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Beverages</h2>
+          <div class="menu-list">
+            <div class="item"><span class="name">2 Liter Soft Drink</span><span class="dots"></span><span class="price">$4.00</span></div>
+            <div class="item"><span class="name">Regular Beverage</span><span class="dots"></span><span class="price">$2.79</span></div>
+            <div class="item"><span class="name">Large Beverage</span><span class="dots"></span><span class="price">$2.99</span></div>
+            <div class="item"><span class="name">Gallon of Tea</span><span class="dots"></span><span class="price">$6.89</span></div>
+            <div class="item"><span class="name">Bottled Water</span><span class="dots"></span><span class="price">$2.67</span></div>
+            <div class="item"><span class="name">Kids Beverage</span><span class="dots"></span><span class="price">$1.29</span></div>
+            <div class="item"><span class="name">Domestic Beer</span><span class="dots"></span><span class="price">$2.99</span></div>
+            <div class="item"><span class="name">Premium Beer</span><span class="dots"></span><span class="price">$3.19</span></div>
+            <div class="item"><span class="name">Glass of Wine</span><span class="dots"></span><span class="price">$3.19</span></div>
+            <div class="item"><span class="name">Bucket of Domestic</span><span class="dots"></span><span class="price">$10.69</span></div>
+            <div class="item"><span class="name">Bucket of Premium</span><span class="dots"></span><span class="price">$14.79</span></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Just for Kids</h2>
+          <div class="menu-list">
+            <div class="item"><span class="name">Pizza</span><span class="dots"></span><span class="price">$6.39</span></div>
+            <div class="item"><span class="name">Grilled Cheese</span><span class="dots"></span><span class="price">$5.49</span></div>
+            <div class="item"><span class="name">Ham &amp; Cheese Grinder</span><span class="dots"></span><span class="price">$6.09</span></div>
+            <div class="item"><span class="name">Turkey Grinder</span><span class="dots"></span><span class="price">$6.09</span></div>
+            <div class="item"><span class="name">Pizza Grinder</span><span class="dots"></span><span class="price">$6.09</span></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Pasta</h2>
+          <div class="menu-list">
+            <div class="item"><span class="name">Lasagna Meal</span><span class="dots"></span><span class="price">$14.49</span></div>
+            <div class="item"><span class="name">Lasagna</span><span class="dots"></span><span class="price">$12.39</span></div>
+            <div class="item"><span class="name">Spaghetti Meal</span><span class="dots"></span><span class="price">$12.39</span></div>
+            <div class="item"><span class="name">Spaghetti</span><span class="dots"></span><span class="price">$10.49</span></div>
+            <div class="item"><span class="name">Ravioli Meal</span><span class="dots"></span><span class="price">$12.79</span></div>
+            <div class="item"><span class="name">Ravioli</span><span class="dots"></span><span class="price">$10.79</span></div>
+            <div class="item"><span class="name">Fettuccini Alfredo Meal</span><span class="dots"></span><span class="price">$13.79</span></div>
+            <div class="item"><span class="name">Fettuccini Alfredo</span><span class="dots"></span><span class="price">$11.59</span></div>
+            <div class="item"><span class="name">Chicken Parmesan Meal</span><span class="dots"></span><span class="price">$15.59</span></div>
+            <div class="item"><span class="name">Chicken Parmesan</span><span class="dots"></span><span class="price">$13.49</span></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">We Cater</h2>
+          <div class="menu-list">
+            <div class="item"><span class="name">Party Box</span><span class="dots"></span><span class="price">$87.99</span></div>
+            <div class="item"><span class="name">Party Dinner Salad</span><span class="dots"></span><span class="price">$34.00</span></div>
+            <div class="item"><span class="name">Party Chef Salad</span><span class="dots"></span><span class="price">$46.00</span></div>
+            <div class="item"><span class="name">Party Greek Salad</span><span class="dots"></span><span class="price">$46.00</span></div>
+            <div class="item"><span class="name">Party Chicken Salad</span><span class="dots"></span><span class="price">$55.00</span></div>
+            <div class="item"><span class="name">Bone-In Wings (35 Count)</span><span class="dots"></span><span class="price">$38.99</span></div>
+            <div class="item"><span class="name">Bone-In Wings (50 Count)</span><span class="dots"></span><span class="price">$55.99</span></div>
+            <div class="item"><span class="name">Dozen Cookies</span><span class="dots"></span><span class="price">$10.99</span></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Locations</h2>
+<div class="locations">
+  <p>
+  <strong>Irmo</strong><br>
+
+  <a href="https://www.google.com/maps/search/?api=1&query=1085+Lake+Murry+Blvd+Irmo+SC+29063"
+  target="_blank">
+
+  1085 Lake Murray Blvd<br>
+  Irmo, SC 29063
+
+  </a><br>
+
+  Phone: (803) 407-4884
+  </p>
+
+  <p><strong>Hours</strong><br>
+  Sunday - Saturday • 11 am - 9 pm</p>
+</div>
+          <div class="cta">
+            <a class="btn" href="tel:18034074884">Call Now</a>
+            <a class="btn" href="https://www.google.com/maps/search/?api=1&query=1085+Lake+Murry+Blvd+Irmo+SC+29063" target="_blank">View Location</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+  </div>
+</body>
+</html>
