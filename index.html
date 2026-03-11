@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bellacino's Pizza & Grinders | Choose Location</title>
+  <style>
+    :root{
+      --red:#c5121b;
+      --dark-red:#8f0f15;
+      --black:#111111;
+      --white:#ffffff;
+      --cream:#f8f3ea;
+      --gold:#f5b301;
+      --text:#444444;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      min-height:100vh;
+      padding:24px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.08) 0%, transparent 25%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.06) 0%, transparent 25%),
+        linear-gradient(135deg, #c5121b 0%, #8f0f15 55%, #5f0b10 100%);
+    }
+
+    .wrapper{
+      width:100%;
+      max-width:1050px;
+    }
+
+    .container{
+      background:rgba(255,255,255,0.97);
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(0,0,0,0.28);
+      border:1px solid rgba(255,255,255,0.35);
+    }
+
+    .hero{
+      position:relative;
+      text-align:center;
+      padding:50px 24px 36px;
+      background:
+        linear-gradient(to bottom, #fff8f3 0%, #fdf6ef 100%);
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height:6px;
+      background:linear-gradient(90deg, var(--gold), var(--red), var(--gold));
+    }
+
+    .logo{
+      width:320px;
+      max-width:90%;
+      height:auto;
+      display:block;
+      margin:0 auto 22px;
+    }
+
+    h1{
+      color:var(--red);
+      font-size:2.2rem;
+      line-height:1.15;
+      margin-bottom:12px;
+    }
+
+    .subtitle{
+      max-width:700px;
+      margin:0 auto;
+      font-size:1.05rem;
+      color:var(--text);
+      line-height:1.7;
+    }
+
+    .locations{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:24px;
+      padding:34px 28px;
+      background:var(--cream);
+    }
+
+    .card{
+      background:var(--white);
+      border-radius:22px;
+      padding:28px 24px;
+      text-align:center;
+      box-shadow:0 10px 25px rgba(0,0,0,0.10);
+      border:1px solid #eee4d6;
+      transition:transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 16px 32px rgba(0,0,0,0.14);
+    }
+
+    .card h2{
+      font-size:1.7rem;
+      color:var(--black);
+      margin-bottom:8px;
+    }
+
+    .card p{
+      color:var(--text);
+      font-size:1rem;
+      line-height:1.6;
+      margin-bottom:20px;
+    }
+
+    .button-group{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-block;
+      min-width:220px;
+      text-decoration:none;
+      padding:14px 22px;
+      border-radius:999px;
+      font-weight:bold;
+      font-size:1rem;
+      transition:all 0.2s ease;
+    }
+
+    .menu-btn{
+      background:var(--red);
+      color:var(--white);
+    }
+
+    .menu-btn:hover{
+      background:var(--dark-red);
+      transform:scale(1.02);
+    }
+
+    .feedback-btn{
+      background:var(--black);
+      color:var(--white);
+    }
+
+    .feedback-btn:hover{
+      background:#2a2a2a;
+      transform:scale(1.02);
+    }
+
+    .feedback-section{
+      text-align:center;
+      padding:38px 24px 34px;
+      background:#fffdfa;
+    }
+
+    .feedback-section h3{
+      font-size:1.6rem;
+      color:var(--red);
+      margin-bottom:12px;
+    }
+
+    .feedback-section p{
+      max-width:760px;
+      margin:0 auto;
+      font-size:1rem;
+      line-height:1.7;
+      color:var(--text);
+    }
+
+    .footer{
+      text-align:center;
+      padding:18px 20px 24px;
+      font-size:0.95rem;
+      color:#666;
+      background:#fff8f2;
+    }
+
+    @media (max-width: 800px){
+      .locations{
+        grid-template-columns:1fr;
+      }
+
+      h1{
+        font-size:1.8rem;
+      }
+
+      .subtitle{
+        font-size:1rem;
+      }
+
+      .btn{
+        min-width:100%;
+        max-width:280px;
+      }
+    }
+
+    @media (max-width: 480px){
+      body{
+        padding:14px;
+      }
+
+      .hero{
+        padding:38px 18px 28px;
+      }
+
+      .locations{
+        padding:22px 18px;
+      }
+
+      .card{
+        padding:24px 18px;
+      }
+
+      h1{
+        font-size:1.55rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+
+      <section class="hero">
+        <img src="BellacinosLogo.png" alt="Bellacino's Pizza & Grinders Logo" class="logo">
+        <h1>Choose Your Location</h1>
+        <p class="subtitle">
+          Welcome to Bellacino’s Pizza & Grinders. Select your location below to view the menu or leave feedback. We truly appreciate your support and value every guest experience.
+        </p>
+      </section>
+
+      <section class="locations">
+        <div class="card">
+          <h2>Lexington</h2>
+          <p>
+            View the Lexington menu or share feedback about your visit.
+          </p>
+          <div class="button-group">
+            <a class="btn menu-btn" href="/Lexington/">View Lexington Menu</a>
+            <a class="btn feedback-btn" href="/Lexington/feedback/">Leave Lexington Feedback</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Irmo</h2>
+          <p>
+            View the Irmo menu or share feedback about your visit.
+          </p>
+          <div class="button-group">
+            <a class="btn menu-btn" href="/Irmo/">View Irmo Menu</a>
+            <a class="btn feedback-btn" href="/Irmo/feedback/">Leave Irmo Feedback</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="feedback-section">
+        <h3>Your Feedback Is Greatly Appreciated</h3>
+        <p>
+          Thank you for visiting Bellacino’s. Whether you stopped by in Lexington or Irmo, your feedback helps improve service, food quality, and overall guest experience. We appreciate every review and every visit.
+        </p>
+      </section>
+
+      <div class="footer">
+        Bellacino’s Pizza & Grinders • Lexington and Irmo, South Carolina
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
