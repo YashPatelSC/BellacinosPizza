@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Menu QR</title>
+<style>
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #eee;
+}
+
+.card {
+    width: 4in;
+    height: 6in;
+    border: 6px solid #000;
+    background: #fff;
+    text-align: center;
+    padding: 18px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto 5px;
+}
+
+h1 {
+    color: #c5121b;
+    font-size: 24px;
+    margin: 5px 0;
+    text-transform: uppercase;
+}
+
+p {
+    margin: 6px 0;
+    font-size: 15px;
+}
+
+.qr {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qr img {
+    width: 200px;
+    height: 200px;
+}
+
+.footer {
+    font-size: 13px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <!-- LOGO -->
+    <img src="bella_logo.png" alt="Bellacino's Logo" class="logo">
+
+    <!-- TITLE -->
+    <h1>Need to Check the Menu?</h1>
+
+    <!-- SUBTEXT -->
+    <p>Scan here to view our full menu</p>
+
+    <!-- QR -->
+    <div class="qr">
+        <img src="QR_CODE_IMAGE.png" alt="QR Code">
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        Pizzas • Grinders • Wings • Salads
+    </div>
+
+</div>
+
+</body>
+</html>
